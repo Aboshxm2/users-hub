@@ -1,13 +1,19 @@
-const { Events, GatewayIntentBits } = require('discord.js');
-import { token } from "../config.json";
+import { GatewayIntentBits } from 'discord.js';
 import { Client } from "./Client";
 import fs from "fs";
 import path from "path";
 import { Event } from "./models/Event";
 import { Command } from "./models/Command";
+import { guild } from "../config.json";
+import { config } from "dotenv"
+
+config()
 
 async function main(){
-    const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+    const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
+
+    client.guildId = guild;
+
     const eventsPath = path.join(__dirname, 'events');
     const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
@@ -32,8 +38,7 @@ async function main(){
         client.commands.set(command.data.name, command);
     }
 
-    client.login(token);
+    client.login(process.env.token);
 }
-
 
 main();

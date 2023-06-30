@@ -1,2 +1,2 @@
-# discord.js-typescript-template
-discord.js template written with typescript.
+# users-hub
+discord bot created for usershub server: https://discord.gg/p6qkD6QmRd

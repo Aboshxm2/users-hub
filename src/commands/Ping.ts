@@ -8,6 +8,6 @@ module.exports = new class extends Command {
     .setDescription('Replies with Pong!')
 
     async onCommand(interaction: CommandInteraction<CacheType>): Promise<void> {
-        interaction.reply("pong")
+        interaction.reply(`🏓Latency is ${Date.now() - interaction.createdTimestamp}ms. API Latency is ${Math.round(interaction.client.ws.ping)}ms`);
     }
 }

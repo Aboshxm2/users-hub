@@ -44,9 +44,7 @@ export class Client extends Discord.Client {
   }
 
   public async updateMemberRoles(member: GuildMember) {
-    if (member.user.discriminator !== "0") return; // old username system
-
-    const roles = await resolve(member.user.username);
+    const roles = await resolve(member.user);
     const toRemove = [];
 
     for (const r of [
